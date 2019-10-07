@@ -1,6 +1,7 @@
 import 'package:firebase_user_avatar_flutter/auth_widget.dart';
 import 'package:firebase_user_avatar_flutter/landing_page.dart';
 import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
+import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +13,8 @@ class MyApp extends StatelessWidget {
     // MultiProvider for top-level services that can be created right away
     return MultiProvider(
       providers: [
-        Provider<FirebaseAuthService>(
-          builder: (_) => FirebaseAuthService(),
-        ),
+        Provider<FirebaseAuthService>(builder: (_) => FirebaseAuthService()),
+        Provider<ImagePickerService>(builder: (_) => ImagePickerService()),
       ],
       child: AuthWidget(
           builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {

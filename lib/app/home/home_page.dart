@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
 import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
+import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,12 @@ class HomePage extends StatelessWidget {
     } on PlatformException catch (e) {
       print('error');
     }
+  }
+
+  Future<void> _pickImage(BuildContext context) async {
+    final imagePicker = Provider.of<ImagePickerService>(context);
+    final file = await imagePicker.pickImage();
+    // TODO Upload to storage
   }
 
   @override
@@ -36,18 +43,26 @@ class HomePage extends StatelessWidget {
         ],
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(130.0),
-          child: _buildUserInfo(user),
+          child: _buildUserInfo(context: context, user: user),
         ),
       ),
     );
   }
 
-  Widget _buildUserInfo(User user) {
-    return Avatar(
-      photoUrl: null,
-      radius: 50,
-      borderColor: Colors.black54,
-      borderWidth: 2.0,
+  Widget _buildUserInfo({BuildContext context, User user}) {
+    return Column(
+      children: <Widget>[
+        InkWell(
+          child: Avatar(
+            photoUrl: null,
+            radius: 50,
+            borderColor: Colors.black54,
+            borderWidth: 2.0,
+          ),
+          onTap: () => _pickImage(context),
+        ),
+        SizedBox(height: 16),
+      ],
     );
   }
 }
