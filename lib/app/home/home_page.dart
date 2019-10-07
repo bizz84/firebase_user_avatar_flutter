@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
+import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
 import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
+import 'package:firebase_user_avatar_flutter/services/firebase_storage_service.dart';
+import 'package:firebase_user_avatar_flutter/services/firestore_database.dart';
 import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,15 +15,30 @@ class HomePage extends StatelessWidget {
     try {
       final auth = Provider.of<FirebaseAuthService>(context);
       await auth.signOut();
-    } on PlatformException catch (e) {
-      print('error');
+    } catch (e) {
+      print(e);
     }
   }
 
-  Future<void> _pickImage(BuildContext context) async {
-    final imagePicker = Provider.of<ImagePickerService>(context);
-    final file = await imagePicker.pickImage();
-    // TODO Upload to storage
+  Future<void> _chooseAvatar(BuildContext context) async {
+    try {
+      // 1. Get image from picker
+      final imagePicker = Provider.of<ImagePickerService>(context);
+      final file = await imagePicker.pickImage();
+      // 2. Upload to storage
+      final storage = Provider.of<FirebaseStorageService>(context);
+      final user = Provider.of<User>(context);
+      final url = await storage.upload(
+        uid: user.uid,
+        file: file,
+        filename: 'avatar',
+      );
+      // 3. Save url to Firestore
+      final database = Provider.of<FirestoreDatabase>(context);
+      await database.setAvatarReference(AvatarReference(url));
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -50,6 +68,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildUserInfo({BuildContext context, User user}) {
+    // TODO: get Avatar url from Firestore, use in FutureBuilder?
     return Column(
       children: <Widget>[
         InkWell(
@@ -59,7 +78,7 @@ class HomePage extends StatelessWidget {
             borderColor: Colors.black54,
             borderWidth: 2.0,
           ),
-          onTap: () => _pickImage(context),
+          onTap: () => _chooseAvatar(context),
         ),
         SizedBox(height: 16),
       ],
