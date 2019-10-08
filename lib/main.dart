@@ -1,5 +1,5 @@
 import 'package:firebase_user_avatar_flutter/auth_widget.dart';
-import 'package:firebase_user_avatar_flutter/landing_page.dart';
+import 'package:firebase_user_avatar_flutter/auth_widget_builder.dart';
 import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
 import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
@@ -22,16 +22,16 @@ class MyApp extends StatelessWidget {
       ],
       // child: MaterialApp(
       //   theme: ThemeData(primarySwatch: Colors.indigo),
-      //   home: AuthWidget(
+      //   home: AuthWidgetBuilder(
       //       builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {
-      //     return LandingPage(userSnapshot: userSnapshot);
+      //     return AuthWidget(userSnapshot: userSnapshot);
       //   }),
       // ),
-      child: AuthWidget(
+      child: AuthWidgetBuilder(
           builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {
         return MaterialApp(
           theme: ThemeData(primarySwatch: Colors.indigo),
-          home: LandingPage(userSnapshot: userSnapshot),
+          home: AuthWidget(userSnapshot: userSnapshot),
         );
       }),
     );
