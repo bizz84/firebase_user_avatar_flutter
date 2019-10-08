@@ -14,6 +14,7 @@ class FirebaseStorageService {
         contentType: 'image/png',
       );
 
+  /// Generic upload method for any [path] and [contentType]
   Future<String> upload({File file, String path, String contentType}) async {
     print('uploading to: $path');
     final storageReference = FirebaseStorage.instance.ref().child(path);

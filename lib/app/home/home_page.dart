@@ -26,10 +26,12 @@ class HomePage extends StatelessWidget {
       final file = await imagePicker.pickImage();
       // 2. Upload to storage
       final storage = Provider.of<FirebaseStorageService>(context);
-      final url = await storage.upload(file: file);
+      final url = await storage.uploadAvatar(file: file);
       // 3. Save url to Firestore
       final database = Provider.of<FirestoreDatabase>(context);
       await database.setAvatarReference(AvatarReference(url));
+      // 4. (optional) delete local file as no longer needed
+      await file.delete();
     } catch (e) {
       print(e);
     }
@@ -37,7 +39,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -57,7 +58,7 @@ class HomePage extends StatelessWidget {
           preferredSize: Size.fromHeight(130.0),
           child: Column(
             children: <Widget>[
-              _buildUserInfo(context: context, user: user),
+              _buildUserInfo(context: context),
               SizedBox(height: 16),
             ],
           ),
@@ -66,21 +67,19 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildUserInfo({BuildContext context, User user}) {
+  Widget _buildUserInfo({BuildContext context}) {
     // TODO: Remove in tutorial
     final database = Provider.of<FirestoreDatabase>(context);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(),
       builder: (context, snapshot) {
         final avatarReference = snapshot.data;
-        return InkWell(
-          child: Avatar(
-            photoUrl: avatarReference?.downloadUrl,
-            radius: 50,
-            borderColor: Colors.black54,
-            borderWidth: 2.0,
-          ),
-          onTap: () => _chooseAvatar(context),
+        return Avatar(
+          photoUrl: avatarReference?.downloadUrl,
+          radius: 50,
+          borderColor: Colors.black54,
+          borderWidth: 2.0,
+          onPressed: () => _chooseAvatar(context),
         );
       },
     );

@@ -1,7 +1,6 @@
 import 'package:firebase_user_avatar_flutter/auth_widget.dart';
 import 'package:firebase_user_avatar_flutter/landing_page.dart';
 import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
-import 'package:firebase_user_avatar_flutter/services/firebase_storage_service.dart';
 import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +18,6 @@ class MyApp extends StatelessWidget {
         ),
         Provider<ImagePickerService>(
           builder: (_) => ImagePickerService(),
-        ),
-        Provider<FirebaseStorageService>(
-          builder: (_) => FirebaseStorageService(),
         ),
       ],
       child: AuthWidget(
