@@ -8,7 +8,6 @@ import 'package:firebase_user_avatar_flutter/services/firestore_database.dart';
 import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/services.dart';
 
 class HomePage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
@@ -27,12 +26,7 @@ class HomePage extends StatelessWidget {
       final file = await imagePicker.pickImage();
       // 2. Upload to storage
       final storage = Provider.of<FirebaseStorageService>(context);
-      final user = Provider.of<User>(context);
-      final url = await storage.upload(
-        uid: user.uid,
-        file: file,
-        filename: 'avatar',
-      );
+      final url = await storage.upload(file: file);
       // 3. Save url to Firestore
       final database = Provider.of<FirestoreDatabase>(context);
       await database.setAvatarReference(AvatarReference(url));
@@ -61,27 +55,34 @@ class HomePage extends StatelessWidget {
         ],
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(130.0),
-          child: _buildUserInfo(context: context, user: user),
+          child: Column(
+            children: <Widget>[
+              _buildUserInfo(context: context, user: user),
+              SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildUserInfo({BuildContext context, User user}) {
-    // TODO: get Avatar url from Firestore, use in FutureBuilder?
-    return Column(
-      children: <Widget>[
-        InkWell(
+    // TODO: Remove in tutorial
+    final database = Provider.of<FirestoreDatabase>(context);
+    return StreamBuilder<AvatarReference>(
+      stream: database.avatarReferenceStream(),
+      builder: (context, snapshot) {
+        final avatarReference = snapshot.data;
+        return InkWell(
           child: Avatar(
-            photoUrl: null,
+            photoUrl: avatarReference?.downloadUrl,
             radius: 50,
             borderColor: Colors.black54,
             borderWidth: 2.0,
           ),
           onTap: () => _chooseAvatar(context),
-        ),
-        SizedBox(height: 16),
-      ],
+        );
+      },
     );
   }
 }

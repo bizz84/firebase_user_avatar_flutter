@@ -17,8 +17,7 @@ class FirestoreDatabase {
         data: avatarReference.toMap(),
       );
 
-  Stream<AvatarReference> jobStream({@required String jobId}) =>
-      _service.documentStream(
+  Stream<AvatarReference> avatarReferenceStream() => _service.documentStream(
         path: FirestorePath.avatar(uid),
         builder: (data, _) => AvatarReference.fromMap(data),
       );
