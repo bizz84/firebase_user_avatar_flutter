@@ -20,6 +20,13 @@ class MyApp extends StatelessWidget {
           builder: (_) => ImagePickerService(),
         ),
       ],
+      // child: MaterialApp(
+      //   theme: ThemeData(primarySwatch: Colors.indigo),
+      //   home: AuthWidget(
+      //       builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {
+      //     return LandingPage(userSnapshot: userSnapshot);
+      //   }),
+      // ),
       child: AuthWidget(
           builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {
         return MaterialApp(
