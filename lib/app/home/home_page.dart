@@ -7,6 +7,7 @@ import 'package:firebase_user_avatar_flutter/services/firebase_storage_service.d
 import 'package:firebase_user_avatar_flutter/services/firestore_database.dart';
 import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,13 +24,13 @@ class HomePage extends StatelessWidget {
     try {
       // 1. Get image from picker
       final imagePicker = Provider.of<ImagePickerService>(context);
-      final file = await imagePicker.pickImage();
+      final file = await imagePicker.pickImage(source: ImageSource.gallery);
       // 2. Upload to storage
       final storage = Provider.of<FirebaseStorageService>(context);
-      final url = await storage.uploadAvatar(file: file);
+      final downloadUrl = await storage.uploadAvatar(file: file);
       // 3. Save url to Firestore
       final database = Provider.of<FirestoreDatabase>(context);
-      await database.setAvatarReference(AvatarReference(url));
+      await database.setAvatarReference(AvatarReference(downloadUrl));
       // 4. (optional) delete local file as no longer needed
       await file.delete();
     } catch (e) {
