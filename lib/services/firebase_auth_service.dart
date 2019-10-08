@@ -22,7 +22,7 @@ class FirebaseAuthService {
   }
 
   Future<User> signInAnonymously() async {
-    final AuthResult authResult = await _firebaseAuth.signInAnonymously();
+    final authResult = await _firebaseAuth.signInAnonymously();
     return _userFromFirebase(authResult.user);
   }
 
