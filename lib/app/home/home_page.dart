@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_user_avatar_flutter/app/home/about_page.dart';
 import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
 import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
 import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
@@ -18,6 +19,15 @@ class HomePage extends StatelessWidget {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> _onAbout(BuildContext context) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => AboutPage(),
+      ),
+    );
   }
 
   Future<void> _chooseAvatar(BuildContext context) async {
@@ -43,6 +53,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        leading: IconButton(
+          icon: Icon(Icons.help),
+          onPressed: () => _onAbout(context),
+        ),
         actions: <Widget>[
           FlatButton(
             child: Text(

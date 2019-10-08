@@ -10,6 +10,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('LandingPage rebuild');
     if (userSnapshot.connectionState == ConnectionState.active) {
       return userSnapshot.hasData ? HomePage() : SignInPage();
     }
