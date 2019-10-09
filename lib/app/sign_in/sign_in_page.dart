@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class SignInPage extends StatelessWidget {
   Future<void> _signInAnonymously(BuildContext context) async {
     try {
-      // TODO: Sign in anonymously
-
+      // TODO: Implement
     } catch (e) {
       print(e);
     }

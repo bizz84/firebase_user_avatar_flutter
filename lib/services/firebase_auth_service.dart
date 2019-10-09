@@ -8,13 +8,10 @@ class User {
 }
 
 class FirebaseAuthService {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final _firebaseAuth = FirebaseAuth.instance;
 
   User _userFromFirebase(FirebaseUser user) {
-    if (user == null) {
-      return null;
-    }
-    return User(uid: user.uid);
+    return user == null ? null : User(uid: user.uid);
   }
 
   Stream<User> get onAuthStateChanged {
