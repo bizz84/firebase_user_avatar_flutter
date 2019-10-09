@@ -1,14 +1,10 @@
-## Advanced Provider Architecture - Image Picker + Firebase Storage Upload
+# Advanced Provider Architecture Tutorial - Image Picker + Firebase Storage Upload
 
 This project shows how to capture, upload and show an avatar image, dependent on the currently logged-in user.
 
-It serves as the foundation for some advanced tutorials on Provider architecture.
+It serves as the foundation for the following tutorials on Provider architecture:
 
-TODO: YouTube Banner
-
-## Tutorial Steps
-
-### Advanced Provider Tutorial - Part 1: Project Setup & Authentication Flow
+## Advanced Provider Tutorial - Part 1: Project Setup & Authentication Flow
 
 To get started with this tutorial, checkout the [`initial-setup`]() branch.
 
@@ -16,26 +12,21 @@ Then, follow the steps in [Firebase Configuration](#firebase-configuration).
 
 Video tutorial here:
 
-TODO: YouTube Video
+[![Advanced Provider Tutorial - Part 1: Project Setup & Authentication Flow](media/flutter-provider-advanced-banner-1.png)]()
 
-### Advanced Provider Tutorial - Part 2: MultiProvider & Multiple Services
+## Advanced Provider Tutorial - Part 2: MultiProvider & Multiple Services
 
 To continue from the end of the previous tutorial, checkout the [`authentication-complete`]() branch.
 
-Video tutorial here:
-
-TODO: YouTube Video
+**Video tutorial upcoming**
 
 ### Advanced Provider Tutorial - Part 3: Dependencies Between Providers
 
-To continue from the end of the previous tutorial, checkout the [`intermediate-implementation`]()  branch.
+To continue from the end of the previous tutorial, checkout the [`working-implementation`]()  branch.
 
-Video tutorial here:
-
-TODO: YouTube Video
+**Video tutorial upcoming**
 
 The final, completed project is available on the [`master`]() branch.
-
 
 ## Firebase Configuration
 
