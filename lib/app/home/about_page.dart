@@ -1,6 +1,7 @@
 import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
 import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
-import 'package:firebase_user_avatar_flutter/services/firestore_database.dart';
+import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
+import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,9 +46,10 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget _buildUserInfo({BuildContext context}) {
-    final database = Provider.of<FirestoreDatabase>(context);
+    final database = Provider.of<FirestoreService>(context);
+    final user = Provider.of<User>(context);
     return StreamBuilder<AvatarReference>(
-      stream: database.avatarReferenceStream(),
+      stream: database.avatarReferenceStream(uid: user.uid),
       builder: (context, snapshot) {
         final avatarReference = snapshot.data;
         return Avatar(
