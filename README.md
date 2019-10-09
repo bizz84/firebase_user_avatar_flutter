@@ -8,11 +8,36 @@ TODO: YouTube Banner
 
 ## Tutorial Steps
 
-1. Initial project setup: see [`initial-setup`]() branch.
-2. Intermediate working implementation: see [`intermediate-implementation`]() branch.
-3. Final optimal implementation: see [`optimal-implementation`]() branch.
+### Advanced Provider Tutorial - Part 1: Project Setup & Authentication Flow
 
-## Running the project with Firebase
+To get started with this tutorial, checkout the [`initial-setup`]() branch.
+
+Then, follow the steps in [Firebase Configuration](#firebase-configuration).
+
+Video tutorial here:
+
+TODO: YouTube Video
+
+### Advanced Provider Tutorial - Part 2: MultiProvider & Multiple Services
+
+To continue from the end of the previous tutorial, checkout the [`authentication-complete`]() branch.
+
+Video tutorial here:
+
+TODO: YouTube Video
+
+### Advanced Provider Tutorial - Part 3: Dependencies Between Providers
+
+To continue from the end of the previous tutorial, checkout the [`intermediate-implementation`]()  branch.
+
+Video tutorial here:
+
+TODO: YouTube Video
+
+The final, completed project is available on the [`master`]() branch.
+
+
+## Firebase Configuration
 
 To use this project with Firebase authentication, some configuration steps are required.
 
