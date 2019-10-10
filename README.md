@@ -6,7 +6,7 @@ It serves as the foundation for the following tutorials on Provider architecture
 
 ## Advanced Provider Tutorial - Part 1: Project Setup & Authentication Flow
 
-To get started with this tutorial, checkout the [`initial-setup`]() branch.
+To get started with this tutorial, checkout the [`initial-setup`](https://github.com/bizz84/firebase_user_avatar_flutter/tree/initial-setup) branch.
 
 Then, follow the steps in [Firebase Configuration](#firebase-configuration).
 
@@ -16,17 +16,17 @@ Video tutorial here:
 
 ## Advanced Provider Tutorial - Part 2: MultiProvider & Multiple Services
 
-To continue from the end of the previous tutorial, checkout the [`authentication-complete`]() branch.
+To continue from the end of the previous tutorial, checkout the [`authentication-complete`](https://github.com/bizz84/firebase_user_avatar_flutter/tree/authentication-complete) branch.
 
 **Video tutorial upcoming**
 
 ## Advanced Provider Tutorial - Part 3: Dependencies Between Providers
 
-To continue from the end of the previous tutorial, checkout the [`working-implementation`]()  branch.
+To continue from the end of the previous tutorial, checkout the [`working-implementation`](https://github.com/bizz84/firebase_user_avatar_flutter/tree/working-implementation)  branch.
 
 **Video tutorial upcoming**
 
-The final, completed project is available on the [`master`]() branch.
+The final, completed project is available on the [`optimized-implementation`](https://github.com/bizz84/firebase_user_avatar_flutter/tree/optimized-implementation) branch.
 
 ## Firebase Configuration
 
