@@ -11,15 +11,15 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('About'),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(130.0),
-          child: Column(
-            children: <Widget>[
-              _buildUserInfo(context: context),
-              SizedBox(height: 16),
-            ],
-          ),
-        ),
+        // bottom: PreferredSize(
+        //   preferredSize: Size.fromHeight(130.0),
+        //   child: Column(
+        //     children: <Widget>[
+        //       _buildUserInfo(context: context),
+        //       SizedBox(height: 16),
+        //     ],
+        //   ),
+        // ),
       ),
       body: Center(
         child: Column(
@@ -46,8 +46,8 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget _buildUserInfo({BuildContext context}) {
-    final database = Provider.of<FirestoreService>(context);
     final user = Provider.of<User>(context);
+    final database = Provider.of<FirestoreService>(context);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(uid: user.uid),
       builder: (context, snapshot) {
