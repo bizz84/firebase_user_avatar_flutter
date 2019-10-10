@@ -20,7 +20,7 @@ To continue from the end of the previous tutorial, checkout the [`authentication
 
 **Video tutorial upcoming**
 
-### Advanced Provider Tutorial - Part 3: Dependencies Between Providers
+## Advanced Provider Tutorial - Part 3: Dependencies Between Providers
 
 To continue from the end of the previous tutorial, checkout the [`working-implementation`]()  branch.
 
