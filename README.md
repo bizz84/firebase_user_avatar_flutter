@@ -34,7 +34,7 @@ To use this project with Firebase authentication, some configuration steps are r
 
 - Create a new project with the Firebase console.
 - Add iOS and Android apps in the Firebase project settings.
-- On Android, use `com.codingwithflutter.firebase_user_avatar_flutter` as the package name (adding a SHA-1 certificate fingerprint is **not** needed for this project).
+- On Android, use `com.example.firebase_user_avatar_flutter` as the package name (adding a SHA-1 certificate fingerprint is **not** needed for this project).
 - then, [download and copy](https://firebase.google.com/docs/flutter/setup#configure_an_android_app) `google-services.json` into `android/app`.
 - On iOS, use `com.example.firebaseUserAvatarFlutter` as the bundle ID.
 - then, [download and copy](https://firebase.google.com/docs/flutter/setup#configure_an_ios_app) `GoogleService-Info.plist` into `iOS/Runner`, and add it to the Runner target in Xcode.
