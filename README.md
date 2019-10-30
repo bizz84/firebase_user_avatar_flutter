@@ -14,11 +14,14 @@ Video tutorial here:
 
 [![Advanced Provider Tutorial - Part 1: Project Setup & Authentication Flow](media/flutter-provider-advanced-banner-1.png)](https://youtu.be/j8P__wcq2YM)
 
-## Advanced Provider Tutorial - Part 2: MultiProvider & Multiple Services
+## Advanced Provider Tutorial - Part 2: MultiProvider, Multiple Services & Stream Dependencies
 
 To continue from the end of the previous tutorial, checkout the [`authentication-complete`](https://github.com/bizz84/firebase_user_avatar_flutter/tree/authentication-complete) branch.
 
-**Video tutorial upcoming**
+Video tutorial here:
+
+[![Advanced Provider Tutorial - Part 2: MultiProvider, Multiple Services & Stream Dependencies](media/flutter-provider-advanced-banner-2.png)](https://youtu.be/wxN1L3RfulI)
+
 
 ## Advanced Provider Tutorial - Part 3: Dependencies Between Providers
 

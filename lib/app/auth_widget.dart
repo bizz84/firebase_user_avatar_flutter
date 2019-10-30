@@ -14,7 +14,13 @@ class AuthWidget extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final user = snapshot.data;
-          return user != null ? HomePage() : SignInPage();
+          if (user != null) {
+            return Provider<User>.value(
+              value: user,
+              child: HomePage(),
+            );
+          }
+          return SignInPage();
         }
         return Scaffold(
           body: Center(
