@@ -1,6 +1,5 @@
 import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
 import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
-import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
 import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,15 +10,15 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('About'),
-        // bottom: PreferredSize(
-        //   preferredSize: Size.fromHeight(130.0),
-        //   child: Column(
-        //     children: <Widget>[
-        //       _buildUserInfo(context: context),
-        //       SizedBox(height: 16),
-        //     ],
-        //   ),
-        // ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(130.0),
+          child: Column(
+            children: <Widget>[
+              _buildUserInfo(context: context),
+              SizedBox(height: 16),
+            ],
+          ),
+        ),
       ),
       body: Center(
         child: Column(
@@ -46,10 +45,9 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget _buildUserInfo({BuildContext context}) {
-    final user = Provider.of<User>(context);
     final database = Provider.of<FirestoreService>(context);
     return StreamBuilder<AvatarReference>(
-      stream: database.avatarReferenceStream(uid: user.uid),
+      stream: database.avatarReferenceStream(),
       builder: (context, snapshot) {
         final avatarReference = snapshot.data;
         return Avatar(

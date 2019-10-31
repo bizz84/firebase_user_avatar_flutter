@@ -22,12 +22,13 @@ Video tutorial here:
 
 [![Advanced Provider Tutorial - Part 2: MultiProvider, Multiple Services & Stream Dependencies](media/flutter-provider-advanced-banner-2.png)](https://youtu.be/wxN1L3RfulI)
 
-
 ## Advanced Provider Tutorial - Part 3: Dependencies Between Providers
 
 To continue from the end of the previous tutorial, checkout the [`working-implementation`](https://github.com/bizz84/firebase_user_avatar_flutter/tree/working-implementation)  branch.
 
-**Video tutorial upcoming**
+Video tutorial here:
+
+[![Advanced Provider Tutorial - Part 3: Better APIs, Navigation, Widget Rebuilds](media/flutter-provider-advanced-banner-3.png)](https://youtu.be/wxN1L3RfulI)
 
 The final, completed project is available on the [`optimized-implementation`](https://github.com/bizz84/firebase_user_avatar_flutter/tree/optimized-implementation) branch.
 
