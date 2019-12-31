@@ -45,7 +45,7 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget _buildUserInfo({BuildContext context}) {
-    final database = Provider.of<FirestoreService>(context);
+    final database = Provider.of<FirestoreService>(context, listen: false);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(),
       builder: (context, snapshot) {

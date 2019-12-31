@@ -26,10 +26,10 @@ class AuthWidgetBuilder extends StatelessWidget {
             providers: [
               Provider<User>.value(value: user),
               Provider<FirestoreService>(
-                builder: (_) => FirestoreService(uid: user.uid),
+                create: (_) => FirestoreService(uid: user.uid),
               ),
               Provider<FirebaseStorageService>(
-                builder: (_) => FirebaseStorageService(uid: user.uid),
+                create: (_) => FirebaseStorageService(uid: user.uid),
               ),
             ],
             child: builder(context, snapshot),

@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<FirebaseAuthService>(
-          builder: (_) => FirebaseAuthService(),
+          create: (_) => FirebaseAuthService(),
         ),
         Provider<ImagePickerService>(
-          builder: (_) => ImagePickerService(),
+          create: (_) => ImagePickerService(),
         ),
       ],
       child: AuthWidgetBuilder(builder: (context, userSnapshot) {
