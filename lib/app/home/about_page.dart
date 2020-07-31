@@ -26,17 +26,17 @@ class AboutPage extends StatelessWidget {
           children: <Widget>[
             Text(
               'Advanced Provider Tutorials',
-              style: Theme.of(context).textTheme.headline,
+              style: Theme.of(context).textTheme.headline5,
             ),
             SizedBox(height: 32),
             Text(
               'by Andrea Bizzotto',
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.headline6,
             ),
             SizedBox(height: 32),
             Text(
               'codingwithflutter.com',
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.headline6,
             ),
           ],
         ),
