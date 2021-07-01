@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     try {
-      final auth = Provider.of<FirebaseAuthService>(context);
+      final auth = Provider.of<FirebaseAuthService>(context, listen: false);
       await auth.signOut();
     } catch (e) {
       print(e);
@@ -34,15 +34,15 @@ class HomePage extends StatelessWidget {
   Future<void> _chooseAvatar(BuildContext context) async {
     try {
       // 1. Get image from picker
-      final imagePicker = Provider.of<ImagePickerService>(context);
-      final pickedfile = await imagePicker.pickImage(source: ImageSource.gallery);
-      final file = File(pickedfile.path);
+      final imagePicker = Provider.of<ImagePickerService>(context, listen:false);
+      final pickedfile = await (imagePicker.pickImage(source: ImageSource.gallery) as Future<PickedFile?>);
+      final file = pickedfile != null ? File(pickedfile.path) : null;
       if (file != null) {
         // 2. Upload to storage
-        final storage = Provider.of<FirebaseStorageService>(context);
+        final storage = Provider.of<FirebaseStorageService>(context, listen: false);
         final downloadUrl = await storage.uploadAvatar(file: file);
         // 3. Save url to Firestore
-        final database = Provider.of<FirestoreService>(context);
+        final database = Provider.of<FirestoreService>(context, listen: false);
         await database.setAvatarReference(AvatarReference(downloadUrl));
         // 4. (optional) delete local file as no longer needed
         await file.delete();
@@ -86,8 +86,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildUserInfo({BuildContext context}) {
-    final database = Provider.of<FirestoreService>(context);
+  Widget _buildUserInfo({required BuildContext context}) {
+    final database = Provider.of<FirestoreService>(context, listen: false);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(),
       builder: (context, snapshot) {
