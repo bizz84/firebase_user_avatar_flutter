@@ -1,6 +1,6 @@
-import './../../common_widgets/avatar.dart';
-import './../../models/avatar_reference.dart';
-import './../../services/firestore_service.dart';
+import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
+import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
+import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

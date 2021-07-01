@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:vendor_app/models/avatar_reference.dart';
-import 'package:vendor_app/services/firestore_path.dart';
+import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
+import 'package:firebase_user_avatar_flutter/services/firestore_path.dart';
 
 class FirestoreService {
   FirestoreService({required this.uid});

@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:vendor_app/app/home/about_page.dart';
-import 'package:vendor_app/common_widgets/avatar.dart';
-import 'package:vendor_app/models/avatar_reference.dart';
-import 'package:vendor_app/services/firebase_auth_service.dart';
-import 'package:vendor_app/services/firebase_storage_service.dart';
-import 'package:vendor_app/services/firestore_service.dart';
-import 'package:vendor_app/services/image_picker_service.dart';
+import 'package:firebase_user_avatar_flutter/app/home/about_page.dart';
+import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
+import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
+import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
+import 'package:firebase_user_avatar_flutter/services/firebase_storage_service.dart';
+import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
+import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';

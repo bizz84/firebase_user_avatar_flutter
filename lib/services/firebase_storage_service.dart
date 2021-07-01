@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:vendor_app/services/firestore_path.dart';
+import 'package:firebase_user_avatar_flutter/services/firestore_path.dart';
 
 class FirebaseStorageService {
   FirebaseStorageService({required this.uid});

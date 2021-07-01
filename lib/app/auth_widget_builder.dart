@@ -1,6 +1,6 @@
-import 'package:vendor_app/services/firebase_auth_service.dart';
-import 'package:vendor_app/services/firebase_storage_service.dart';
-import 'package:vendor_app/services/firestore_service.dart';
+import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
+import 'package:firebase_user_avatar_flutter/firebase_storage_service.dart';
+import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
