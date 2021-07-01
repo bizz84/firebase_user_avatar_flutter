@@ -1,6 +1,6 @@
-import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
-import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
-import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
+import './../../common_widgets/avatar.dart';
+import './../../models/avatar_reference.dart';
+import './../../services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,17 +26,17 @@ class AboutPage extends StatelessWidget {
           children: <Widget>[
             Text(
               'Advanced Provider Tutorials',
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headline,
             ),
             SizedBox(height: 32),
             Text(
               'by Andrea Bizzotto',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.title,
             ),
             SizedBox(height: 32),
             Text(
               'codingwithflutter.com',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.title,
             ),
           ],
         ),
@@ -45,7 +45,7 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget _buildUserInfo({BuildContext context}) {
-    final database = Provider.of<FirestoreService>(context, listen: false);
+    final database = Provider.of<FirestoreService>(context);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(),
       builder: (context, snapshot) {

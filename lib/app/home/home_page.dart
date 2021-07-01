@@ -1,12 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:firebase_user_avatar_flutter/app/home/about_page.dart';
-import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
-import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
-import 'package:firebase_user_avatar_flutter/services/firebase_auth_service.dart';
-import 'package:firebase_user_avatar_flutter/services/firebase_storage_service.dart';
-import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
-import 'package:firebase_user_avatar_flutter/services/image_picker_service.dart';
+import 'package:vendor_app/app/home/about_page.dart';
+import 'package:vendor_app/common_widgets/avatar.dart';
+import 'package:vendor_app/models/avatar_reference.dart';
+import 'package:vendor_app/services/firebase_auth_service.dart';
+import 'package:vendor_app/services/firebase_storage_service.dart';
+import 'package:vendor_app/services/firestore_service.dart';
+import 'package:vendor_app/services/image_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     try {
-      final auth = Provider.of<FirebaseAuthService>(context, listen: false);
+      final auth = Provider.of<FirebaseAuthService>(context);
       await auth.signOut();
     } catch (e) {
       print(e);
@@ -33,16 +34,15 @@ class HomePage extends StatelessWidget {
   Future<void> _chooseAvatar(BuildContext context) async {
     try {
       // 1. Get image from picker
-      final imagePicker =
-          Provider.of<ImagePickerService>(context, listen: false);
-      final file = await imagePicker.pickImage(source: ImageSource.gallery);
+      final imagePicker = Provider.of<ImagePickerService>(context);
+      final pickedfile = await imagePicker.pickImage(source: ImageSource.gallery);
+      final file = File(pickedfile.path);
       if (file != null) {
         // 2. Upload to storage
-        final storage =
-            Provider.of<FirebaseStorageService>(context, listen: false);
+        final storage = Provider.of<FirebaseStorageService>(context);
         final downloadUrl = await storage.uploadAvatar(file: file);
         // 3. Save url to Firestore
-        final database = Provider.of<FirestoreService>(context, listen: false);
+        final database = Provider.of<FirestoreService>(context);
         await database.setAvatarReference(AvatarReference(downloadUrl));
         // 4. (optional) delete local file as no longer needed
         await file.delete();
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildUserInfo({BuildContext context}) {
-    final database = Provider.of<FirestoreService>(context, listen: false);
+    final database = Provider.of<FirestoreService>(context);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(),
       builder: (context, snapshot) {
