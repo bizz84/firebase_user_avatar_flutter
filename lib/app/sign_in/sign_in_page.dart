@@ -17,7 +17,7 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Sign in')),
       body: Center(
-        child: RaisedButton(
+        child: ElevatedButton(
           child: Text('Sign in anonymously'),
           onPressed: () => _signInAnonymously(context),
         ),

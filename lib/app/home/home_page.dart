@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_user_avatar_flutter/app/home/about_page.dart';
 import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
@@ -33,13 +34,12 @@ class HomePage extends StatelessWidget {
   Future<void> _chooseAvatar(BuildContext context) async {
     try {
       // 1. Get image from picker
-      final imagePicker =
-          Provider.of<ImagePickerService>(context, listen: false);
-      final file = await imagePicker.pickImage(source: ImageSource.gallery);
+      final imagePicker = Provider.of<ImagePickerService>(context, listen:false);
+      final pickedfile = await imagePicker.pickImage(source: ImageSource.gallery);
+      final file = pickedfile != null ? File(pickedfile.path) : null;
       if (file != null) {
         // 2. Upload to storage
-        final storage =
-            Provider.of<FirebaseStorageService>(context, listen: false);
+        final storage = Provider.of<FirebaseStorageService>(context, listen: false);
         final downloadUrl = await storage.uploadAvatar(file: file);
         // 3. Save url to Firestore
         final database = Provider.of<FirestoreService>(context, listen: false);
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
           onPressed: () => _onAbout(context),
         ),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text(
               'Logout',
               style: TextStyle(
@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildUserInfo({BuildContext context}) {
+  Widget _buildUserInfo({required BuildContext context}) {
     final database = Provider.of<FirestoreService>(context, listen: false);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(),
