@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
     try {
       // 1. Get image from picker
       final imagePicker = Provider.of<ImagePickerService>(context, listen:false);
-      final pickedfile = await (imagePicker.pickImage(source: ImageSource.gallery) as Future<PickedFile?>);
+      final pickedfile = await imagePicker.pickImage(source: ImageSource.gallery);
       final file = pickedfile != null ? File(pickedfile.path) : null;
       if (file != null) {
         // 2. Upload to storage
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
           onPressed: () => _onAbout(context),
         ),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text(
               'Logout',
               style: TextStyle(
