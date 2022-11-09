@@ -1,21 +1,23 @@
-import 'package:firebase_user_avatar_flutter/common_widgets/avatar.dart';
-import 'package:firebase_user_avatar_flutter/models/avatar_reference.dart';
-import 'package:firebase_user_avatar_flutter/services/firestore_service.dart';
+import 'package:user_avatar_firebase/common_widgets/avatar.dart';
+import 'package:user_avatar_firebase/models/avatar_reference.dart';
+import 'package:user_avatar_firebase/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AboutPage extends StatelessWidget {
+  const AboutPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About'),
+        title: const Text('About'),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(130.0),
+          preferredSize: const Size.fromHeight(130.0),
           child: Column(
             children: <Widget>[
               _buildUserInfo(context: context),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
             ],
           ),
         ),
@@ -28,12 +30,12 @@ class AboutPage extends StatelessWidget {
               'Advanced Provider Tutorials',
               style: Theme.of(context).textTheme.headline5,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Text(
               'by Andrea Bizzotto',
               style: Theme.of(context).textTheme.headline6,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Text(
               'codingwithflutter.com',
               style: Theme.of(context).textTheme.headline6,
@@ -44,14 +46,14 @@ class AboutPage extends StatelessWidget {
     );
   }
 
-  Widget _buildUserInfo({BuildContext context}) {
+  Widget _buildUserInfo({required BuildContext context}) {
     final database = Provider.of<FirestoreService>(context, listen: false);
     return StreamBuilder<AvatarReference>(
       stream: database.avatarReferenceStream(),
       builder: (context, snapshot) {
         final avatarReference = snapshot.data;
         return Avatar(
-          photoUrl: avatarReference?.downloadUrl,
+          photoUrl: avatarReference!.downloadUrl,
           radius: 50,
           borderColor: Colors.black54,
           borderWidth: 2.0,
